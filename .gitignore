@@ -1,0 +1,14 @@
+
+*.py[co]
+.*.swp
+*~
+django_newman.egg-info
+
+test_newman/settings/local.py
+
+test_newman/cover
+
+.project
+.pydevproject
+.settings
+.coverage
