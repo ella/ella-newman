@@ -18,9 +18,9 @@ from djangomarkup.fields import RichTextField, post_save_listener
 
 from ella.core.templatetags.core import BoxNode, ObjectNotFoundOrInvalid
 from ella.core.models import Dependency
-from ella.newman import widgets, utils
-from ella.newman.permission import get_permission, permission_filtered_model_qs, has_category_permission
-from ella.newman.licenses.models import License
+from newman import widgets, utils
+from newman.permission import get_permission, permission_filtered_model_qs, has_category_permission
+from newman.licenses.models import License
 
 __all__ = [
     'NewmanRichTextField',
@@ -30,7 +30,7 @@ __all__ = [
     'ListingCustomField'
 ]
 
-log = logging.getLogger('ella.newman')
+log = logging.getLogger('newman')
 DEP_SRC_TEXT_ATTR = '__dep_src_text'
 
 def dependency_post_save_listener(sender, instance, **kwargs):

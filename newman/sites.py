@@ -17,15 +17,14 @@ from django.conf import settings
 
 from ella.core.cache.utils import get_cached_list
 from ella.core.models.publishable import Publishable
-from ella.newman.forms import SiteFilterForm, ErrorReportForm, EditorBoxForm
-from ella.newman.models import AdminSetting
-from ella.newman.decorators import require_AJAX
-from ella.newman.utils import set_user_config_db, set_user_config_session, get_user_config,\
+from newman.forms import SiteFilterForm, ErrorReportForm, EditorBoxForm
+from newman.models import AdminSetting
+from newman.decorators import require_AJAX
+from newman.utils import set_user_config_db, set_user_config_session, get_user_config,\
     JsonResponse, JsonResponseError, json_decode, user_category_filter
-from ella.newman.permission import has_model_list_permission, applicable_categories, permission_filtered_model_qs
-from ella.newman.conf import newman_settings
-from ella.newman.options import NewmanModelAdmin
-from ella.utils.text import cz_compare
+from newman.permission import has_model_list_permission, applicable_categories, permission_filtered_model_qs
+from newman.conf import newman_settings
+from newman.options import NewmanModelAdmin
 from django.core.urlresolvers import reverse
 
 
@@ -149,7 +148,7 @@ class NewmanSite(AdminSite):
             from django.views.i18n import javascript_catalog
         else:
             from django.views.i18n import null_javascript_catalog as javascript_catalog
-        return javascript_catalog(request, packages=('ella.newman', 'django.conf',))
+        return javascript_catalog(request, packages=('newman', 'django.conf',))
 
     @require_AJAX
     def filter_by_main_categories(self, request, extra_context=None):
@@ -365,7 +364,7 @@ class NewmanSite(AdminSite):
         future_qs_perm = permission_filtered_model_qs(future_qs, request.user)
         future_publishables = user_category_filter(future_qs_perm, request.user)
 
-        cts.sort( lambda a, b: cz_compare(translate_and_upper(a.name), translate_and_upper(b.name)) )
+        cts.sort( lambda a, b: cmp(translate_and_upper(a.name), translate_and_upper(b.name)) )
         context = {
             'title': _('Site administration'),
             'site_filter_form': site_filter_form,

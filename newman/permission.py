@@ -11,22 +11,22 @@ from django.contrib.sites.models import Site
 from django.db.models import query, ForeignKey, ManyToManyField
 
 from ella.core.models import Category
-from ella.newman.models import CategoryUserRole, DenormalizedCategoryUserRole
+from newman.models import CategoryUserRole, DenormalizedCategoryUserRole
 
 CACHE_TIMEOUT = 10 * 60
-log = logging.getLogger('ella.newman.models')
+log = logging.getLogger('newman.models')
 
 # cache keys
 def key_applicable_categories(func, user, permission=None):
     if not permission:
-        return 'ella.newman.permission.applicable_categories_%d' % user.pk
-    return 'ella.newman.permission.applicable_categories_%d__perm_%s' % (user.pk, permission)
+        return 'newman.permission.applicable_categories_%d' % user.pk
+    return 'newman.permission.applicable_categories_%d__perm_%s' % (user.pk, permission)
 
 def key_has_category_permission(func, user, category, permission):
-    return 'ella.newman.permission.has_category_permission_%d_%d__perm_%s' % (user.pk, category.pk, permission)
+    return 'newman.permission.has_category_permission_%d_%d__perm_%s' % (user.pk, category.pk, permission)
 
 def key_has_model_list_permission(func, user, model):
-    return 'ella.newman.permission.has_model_list_permission_%d__model_%s' % (user.pk, str(model))
+    return 'newman.permission.has_model_list_permission_%d__model_%s' % (user.pk, str(model))
 
 #@cache_this(key_has_model_list_permission, timeout=CACHE_TIMEOUT)
 #@utils.profiled_section

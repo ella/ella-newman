@@ -5,8 +5,8 @@ from django.contrib.contenttypes.models import ContentType
 
 from ella.core.cache.utils import get_cached_list
 from ella.core.models import Category
-from ella.newman.models import DenormalizedCategoryUserRole, AdminUserDraft
-from ella.newman import widgets
+from newman.models import DenormalizedCategoryUserRole, AdminUserDraft
+from newman import widgets
 
 class DraftForm(forms.Form):
 

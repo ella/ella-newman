@@ -95,5 +95,5 @@ MEDIA_PREFIX = getattr(settings, 'STATIC_URL')
 # tagging
 MAX_TAGS_INLINE = 3
 
-newman_settings = Settings('ella.newman.conf', 'NEWMAN')
+newman_settings = Settings('newman.conf', 'NEWMAN')
 

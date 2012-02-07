@@ -1,7 +1,7 @@
-from ella.newman import site, GenericTabularInline
-from ella.newman.licenses import LICENSED_MODELS
-from ella.newman.licenses.models import License
-from ella.newman.options import NewmanModelAdmin
+from newman import site, GenericTabularInline
+from newman.licenses import LICENSED_MODELS
+from newman.licenses.models import License
+from newman.options import NewmanModelAdmin
 
 class LicenseInlineAdmin(GenericTabularInline):
     model = License

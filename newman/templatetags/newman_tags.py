@@ -6,12 +6,11 @@ from django.utils.text import capfirst
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy, ugettext
 from django.core.urlresolvers import reverse
+from django.template import RequestContext
 
-from ella.newman import site, permission
-from ella.newman.utils import get_log_entries
-from ella.utils.text import cz_compare
-
-from ella.newman.conf import newman_settings
+from newman import site, permission
+from newman.utils import get_log_entries
+from newman.conf import newman_settings
 
 register = template.Library()
 
@@ -53,7 +52,7 @@ def newman_topmenu(context):
     # Sort the apps alphabetically.
     app_list = app_dict.values()
     app_list.sort(
-        lambda x, y: cz_compare(
+        lambda x, y: cmp(
             ugettext( x['name'] ),
             ugettext( y['name'] )
         )
@@ -61,7 +60,7 @@ def newman_topmenu(context):
 
     # Sort the models alphabetically within each app.
     for app in app_list:
-        app['models'].sort(lambda x, y: cz_compare(x['name'], y['name']))
+        app['models'].sort(lambda x, y: cmp(x['name'], y['name']))
 
     return {
         'NEWMAN_MEDIA_URL': context['NEWMAN_MEDIA_URL'],
@@ -89,7 +88,7 @@ def newman_favorites(context):
                 global_favs.append(m)
                 break
 
-    #global_favs.sort(lambda x, y: cz_compare(x['name'], y['name']))
+    #global_favs.sort(lambda x, y: cmp(x['name'], y['name']))
     return {
         'NEWMAN_MEDIA_URL': context['NEWMAN_MEDIA_URL'],
         'favs': global_favs

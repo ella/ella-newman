@@ -3,7 +3,7 @@ from time import time, sleep
 
 from django.core.management.base import BaseCommand
 from django.db import connection, transaction, reset_queries
-from ella.newman.models import CategoryUserRole, DenormalizedCategoryUserRole
+from newman.models import CategoryUserRole, DenormalizedCategoryUserRole
 
 NO_VERB = 0
 STD_VERB = 1

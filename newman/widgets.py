@@ -17,8 +17,8 @@ from ella.core.conf import core_settings
 from ella.core.models import Listing
 from ella.photos.models import Photo
 from djangomarkup.widgets import RichTextAreaWidget
-from ella.newman.conf import newman_settings
-from ella.newman.widget_extensions import rich_text_extensions
+from newman.conf import newman_settings
+from newman.widget_extensions import rich_text_extensions
 
 __all__ = [
     'NewmanRichTextAreaWidget', 'FlashImageWidget',
@@ -309,7 +309,7 @@ class ContentTypeWidget(forms.Select):
 
     @property
     def applicable_ct_pks(self):
-        from ella.newman import site
+        from newman import site
         return [ct.pk for ct in site.applicable_content_types]
 
     def render_options(self, choices, selected_choices):
@@ -381,7 +381,7 @@ class ChoiceCustomWidget(forms.TextInput):
         return mark_safe(tpl.render(cx))
 
     def _has_changed(self, initial, data):
-        from ella.newman import fields
+        from newman import fields
         initial_value = fields.ChoiceCustomField.default_text
         return super(ChoiceCustomWidget, self)._has_changed(initial_value, data)
 

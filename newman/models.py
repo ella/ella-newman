@@ -5,9 +5,9 @@ from django.contrib.auth.models import User, Group
 from django.template.defaultfilters import date
 from django.conf import settings
 
-from ella.core.cache.utils import CachedForeignKey
+from ella.core.cache.fields import CachedForeignKey
 from ella.core.models import Category
-from ella.newman.managers import DenormalizedCategoryUserRoleManager
+from newman.managers import DenormalizedCategoryUserRoleManager
 
 class DevMessage(models.Model):
     """Development news for ella administrators."""
@@ -132,7 +132,7 @@ class CategoryUserRole(models.Model):
             self.sync_denormalized()
 
     def sync_denormalized(self):
-        from ella.newman.permission import compute_applicable_categories_objects
+        from newman.permission import compute_applicable_categories_objects
         denormalized = []
         cats = []
         #for p in self.group.permissions.all():

@@ -3,7 +3,7 @@ Created on 3.11.2011
 
 @author: xaralis
 '''
-from ella.newman.conf import newman_settings
+from newman.conf import newman_settings
 
 __all__ = ['rich_text_extensions',]
 

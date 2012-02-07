@@ -1,5 +1,5 @@
 from django.conf import settings
-from ella.newman.conf import newman_settings
+from newman.conf import newman_settings
 
 def newman_media(request):
     """

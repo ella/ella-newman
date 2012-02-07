@@ -9,9 +9,9 @@ from django.contrib.sites.models import Site
 import django.db
 
 from ella.core.models import Category
-from ella.newman.permission import permission_filtered_model_qs
+from newman.permission import permission_filtered_model_qs
 
-log = logging.getLogger('ella.newman')
+log = logging.getLogger('newman')
 
 class CommonFilter(filterspecs.FilterSpec):
     def __init__(self, f, request, params, model, model_admin, field_path=None):

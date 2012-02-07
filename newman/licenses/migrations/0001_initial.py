@@ -1,7 +1,7 @@
 
 from south.db import db
 from django.db import models
-from ella.newman.licenses.models import *
+from newman.licenses.models import *
 
 class Migration:
     

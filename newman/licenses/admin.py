@@ -1,5 +1,5 @@
 from django.contrib import admin
-from ella.newman.licenses.models import License
+from newman.licenses.models import License
 
 class LicenseInlineAdmin(admin.TabularInline):
     model = License

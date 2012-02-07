@@ -2,13 +2,13 @@ from django.conf.urls.defaults import *
 from django.http import HttpResponse
 from django.utils.translation import ugettext as _
 
-from ella import newman
 from ella.core.models.main import Category
 
-from ella.newman import models as m
-from ella.newman.filterspecs import CustomFilterSpec
-from ella.newman.permission import is_category_fk, applicable_categories
-from ella.newman.utils import user_category_filter
+import newman
+from newman import models as m
+from newman.filterspecs import CustomFilterSpec
+from newman.permission import is_category_fk, applicable_categories
+from newman.utils import user_category_filter
 
 class DevMessageAdmin(newman.NewmanModelAdmin):
     list_display = ('title', 'author', 'version', 'ts',)
@@ -44,7 +44,7 @@ class CategoryUserRoleAdmin(newman.NewmanModelAdmin):
         return urls
 
     def refresh_view(self, request, extra_context=None):
-        from ella.newman.management.commands.syncroles import denormalize
+        from newman.management.commands.syncroles import denormalize
         # TODO: don't wait for denormalize()
         denormalize()
         return HttpResponse(_('All roles is now refreshed.'))
@@ -156,7 +156,9 @@ from django.contrib.sites.models import Site
 newman.site.register(Site, SiteAdmin)
 
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
+
 class UserAdmin(UserAdmin, newman.NewmanModelAdmin):
+    add_form_template = None
     inlines = [CategoryUserRoleInline]
     suggest_fields = {'groups': ('name',)}
 

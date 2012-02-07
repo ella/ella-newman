@@ -10,7 +10,7 @@ from django.db import connection, transaction
 from django.contrib.contenttypes.models import ContentType
 
 from djangomarkup.models import SourceText, TextProcessor
-from ella.newman import config
+from newman import config
 
 def can_run():
     return True

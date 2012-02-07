@@ -1,7 +1,7 @@
 from django import template
 from django.contrib.contenttypes.models import ContentType
 
-from ella.newman.conf import newman_settings
+from newman.conf import newman_settings
 from ella.ellacomments.newman_admin import MODELS_WITH_COMMENTS
 from ella.positions.models import Position
 

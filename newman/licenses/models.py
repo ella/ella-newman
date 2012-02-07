@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
 
-from ella.core.cache.utils import CachedGenericForeignKey
+from ella.core.cache.fields import CachedGenericForeignKey
 
 class LicenseManager(models.Manager):
     def _get_queryset_of_unapplicables(self, model):

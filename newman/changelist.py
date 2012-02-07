@@ -2,7 +2,7 @@ import logging
 
 from django.contrib.admin.views.main import *
 
-log = logging.getLogger('ella.newman')
+log = logging.getLogger('newman')
 
 class FilterableChangeList(ChangeList):
     def __init__(self, *args, **kwargs):

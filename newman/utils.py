@@ -9,11 +9,11 @@ from django.contrib.admin.models import LogEntry
 from django.db.models.aggregates import Max
 from django.core.urlresolvers import reverse
 
-from ella.newman import models
-from ella.newman.conf import newman_settings
+from newman import models
+from newman.conf import newman_settings
 from ella.core.models import Category
 
-log = logging.getLogger('ella.newman')
+log = logging.getLogger('newman')
 
 
 class Profiler:
@@ -213,7 +213,7 @@ def user_category_filter(queryset, user):
     Returns Queryset containing only user's prefered content (filtering based on categories).
     If queryset.model has no relation to ella.core.models.Category, original queryset is returned.
     """
-    from ella.newman.permission import model_category_fk, is_category_model
+    from newman.permission import model_category_fk, is_category_model
     qs = queryset
     category_fk = model_category_fk(qs.model)
     if not category_fk:

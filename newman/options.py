@@ -22,18 +22,18 @@ from django.template.defaultfilters import striptags, truncatewords
 from django.conf import settings
 
 from ella.core.models.publishable import Publishable
-from ella.newman.changelist import NewmanChangeList, FilterChangeList
-from ella.newman import fields, widgets, utils
-from ella.newman.models import DenormalizedCategoryUserRole, AdminUserDraft, AdminHelpItem
-from ella.newman.decorators import require_AJAX
-from ella.newman.permission import is_category_model, model_category_fk, model_category_fk_value, applicable_categories
-from ella.newman.permission import has_category_permission, get_permission, permission_filtered_model_qs, is_category_fk
-from ella.newman.forms import DraftForm
-from ella.newman.xoptions import XModelAdmin
-from ella.newman.licenses.models import License
-from ella.newman.conf import newman_settings
+from newman.changelist import NewmanChangeList, FilterChangeList
+from newman import fields, widgets, utils
+from newman.models import DenormalizedCategoryUserRole, AdminUserDraft, AdminHelpItem
+from newman.decorators import require_AJAX
+from newman.permission import is_category_model, model_category_fk, model_category_fk_value, applicable_categories
+from newman.permission import has_category_permission, get_permission, permission_filtered_model_qs, is_category_fk
+from newman.forms import DraftForm
+from newman.xoptions import XModelAdmin
+from newman.licenses.models import License
+from newman.conf import newman_settings
 
-log = logging.getLogger('ella.newman')
+log = logging.getLogger('newman')
 
 def formfield_for_dbfield_factory(cls, db_field, **kwargs):
     formfield_overrides = dict(FORMFIELD_FOR_DBFIELD_DEFAULTS, **cls.formfield_overrides)

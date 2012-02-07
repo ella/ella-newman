@@ -1,7 +1,7 @@
 from time import strftime
 
-from ella.newman.conf import newman_settings
-from ella.newman.utils import set_user_config
+from newman.conf import newman_settings
+from newman.utils import set_user_config
 
 class AdminSettingsMiddleware(object):
     """
@@ -47,9 +47,9 @@ class ProfilerMiddleware(object):
         pass
 
     def process_response(self, request, response):
-        from ella.newman.utils import PROFILER
+        from newman.utils import PROFILER
         import logging
-        log = logging.getLogger('ella.newman')
+        log = logging.getLogger('newman')
         if PROFILER.has_data:
             log.info('******** PROFILER SUMMARY:')
             PROFILER.log_summary(log.info)

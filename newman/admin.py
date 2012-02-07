@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from ella.newman import models as m
+from newman import models as m
 
 class DevMessageAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'version', 'ts',)
