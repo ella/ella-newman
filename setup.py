@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
-import ella
+import newman
 
 setup(
     name = 'django-newman',
-    version = ella.__versionstr__,
+    version = newman.__versionstr__,
     description = 'Heavily customized django admin for Ella',
     long_description = '\n'.join((
         'Heavily customized django admin for Ella',
