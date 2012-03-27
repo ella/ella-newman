@@ -1,9 +1,13 @@
 from setuptools import setup, find_packages
-import newman
+
+VERSION = (1, 0, 0)
+
+__version__ = VERSION
+__versionstr__ = '.'.join(map(str, VERSION))
 
 setup(
     name = 'django-newman',
-    version = newman.__versionstr__,
+    version = __versionstr__,
     description = 'Heavily customized django admin for Ella',
     long_description = '\n'.join((
         'Heavily customized django admin for Ella',

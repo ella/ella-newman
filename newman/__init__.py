@@ -15,7 +15,3 @@ template.add_to_builtins('newman.templatetags.newman_tags')
 # newman url for object for other apps, FEs...
 from newman.utils import get_newman_url
 
-VERSION = (1, 0, 0)
-
-__version__ = VERSION
-__versionstr__ = '.'.join(map(str, VERSION))

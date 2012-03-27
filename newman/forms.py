@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.forms.widgets import CheckboxSelectMultiple
 from django.contrib.contenttypes.models import ContentType
 
-from ella.core.cache.utils import get_cached_list
+from ella.core.cache.utils import get_cached_objects
 from ella.core.models import Category
 from newman.models import DenormalizedCategoryUserRole, AdminUserDraft
 from newman import widgets
@@ -34,10 +34,10 @@ class SiteFilterForm(forms.Form):
 
     def init_form(self, user):
         if user.is_superuser:
-            cats = get_cached_list(Category, tree_parent__isnull=True)
+            cats = Category.objects.filter(tree_parent__isnull=True)
         else:
             category_ids = DenormalizedCategoryUserRole.objects.root_categories_by_user(user)
-            cats = get_cached_list(Category, pk__in=category_ids)
+            cats = get_cached_objects(category_ids, Category)
         choices = ()
         for c in cats:
             choices += (c.pk, c.__unicode__(),),

@@ -15,7 +15,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
 
-from ella.core.cache.utils import get_cached_list
 from ella.core.models.publishable import Publishable
 from newman.forms import SiteFilterForm, ErrorReportForm, EditorBoxForm
 from newman.models import AdminSetting
@@ -404,8 +403,7 @@ class NewmanSite(AdminSite):
     def applicable_content_types(self):
 
         acts = []
-        cts = get_cached_list(ContentType)
-        for ct in cts:
+        for ct in ContentType.objects.all():
             cls = ct.model_class()
             if cls and (issubclass(cls, Publishable) or '%s.%s' % (ct.app_label, ct.model) in newman_settings.NON_PUBLISHABLE_CTS):
                 acts.append(ct)
