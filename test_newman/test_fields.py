@@ -6,8 +6,8 @@ from django.test import TestCase
 
 from nose import tools
 
-from newman import fields
-from newman.licenses.models import License
+from ella_newman import fields
+from ella_newman.licenses.models import License
 from ella.core.models import Dependency
 
 from test_newman.helpers import create_basic_categories, create_and_place_a_publishable

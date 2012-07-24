@@ -6,7 +6,7 @@ __version__ = VERSION
 __versionstr__ = '.'.join(map(str, VERSION))
 
 setup(
-    name = 'django-newman',
+    name = 'ella-newman',
     version = __versionstr__,
     description = 'Heavily customized django admin for Ella',
     long_description = '\n'.join((
@@ -18,8 +18,7 @@ setup(
     url='http://ella.github.com/',
 
     packages = find_packages(
-        where = '.',
-        exclude = ('test_newman', )
+        where = './ella_newman',
     ),
 
     include_package_data = True,
@@ -39,11 +38,11 @@ setup(
     ],
     install_requires = [
         'setuptools>=0.6b1',
-        'Django==1.3.1',
+        'django<1.4',
+        'ella<1.4',
         'south>=0.7',
         'anyjson',
         'feedparser',
-        'django-tagging',
         'djangomarkup',
     ],
     setup_requires = [

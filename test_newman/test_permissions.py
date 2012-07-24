@@ -5,10 +5,10 @@ from django.contrib.contenttypes.models import ContentType
 from ella.core.models import Category
 from ella.articles.models import Article
 
-from newman.models import CategoryUserRole
-from newman.permission import has_category_permission, has_object_permission, compute_applicable_categories
-from newman.permission import applicable_categories, permission_filtered_model_qs, is_category_fk
-from newman.permission import model_category_fk, model_category_fk_value, has_model_list_permission
+from ella_newman.models import CategoryUserRole
+from ella_newman.permission import has_category_permission, has_object_permission, compute_applicable_categories
+from ella_newman.permission import applicable_categories, permission_filtered_model_qs, is_category_fk
+from ella_newman.permission import model_category_fk, model_category_fk_value, has_model_list_permission
 from test_newman.helpers import NewmanTestCase
 
 from nose import tools

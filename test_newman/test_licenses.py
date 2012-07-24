@@ -4,7 +4,7 @@ from django.test import TestCase
 from nose import tools
 
 from ella.core.models import Category
-from newman.licenses.models import License
+from ella_newman.licenses.models import License
 
 from test_newman.helpers import create_basic_categories
 
