@@ -1,0 +1,4 @@
+ella
+django<1.4
+anyjson
+-e git+https://github.com/ella/django-markup#egg=django-markup
