@@ -19,7 +19,7 @@ setup(
 
     packages = find_packages(
         where = '.',
-        exclude = 'test_newman',
+        exclude=('test_newman', )
     ),
 
     include_package_data = True,
@@ -40,7 +40,7 @@ setup(
     install_requires = [
         'setuptools>=0.6b1',
         'django<1.4',
-        'ella<1.4',
+        'ella<4',
         'south>=0.7',
         'anyjson',
         'feedparser',
