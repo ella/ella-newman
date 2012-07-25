@@ -2,3 +2,5 @@ ella
 django<1.4
 anyjson
 -e git+https://github.com/ella/django-markup#egg=django-markup
+# FIXME: remove this obsolete requirement when fixed
+-e git+https://github.com/czervenka/ella-two-ports#egg=ella-two-ports

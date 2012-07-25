@@ -18,7 +18,8 @@ setup(
     url='http://ella.github.com/',
 
     packages = find_packages(
-        where = './ella_newman',
+        where = '.',
+        exclude = 'test_newman',
     ),
 
     include_package_data = True,
