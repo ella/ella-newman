@@ -36,6 +36,8 @@ class Migration:
     def backwards(self, orm):
         for table in TABLES:
             db.rename_table('ella_%s' % table, table)
+        # rename app in contenttypes table
+        orm['contenttypes.Contentype'].objects.filter(app_label='ella_newman').update(app_label='newman')
     
     
     models = {
