@@ -3,7 +3,7 @@ from django.contrib.contenttypes.models import ContentType
 
 from ella_newman.conf import newman_settings
 from ella.ellacomments.newman_admin import MODELS_WITH_COMMENTS
-from ella.core.models.publishable import HitCount
+from ella.core.models.publishable import Publishable
 from ella.positions.models import Position
 
 register = template.Library()
@@ -41,14 +41,14 @@ def newman_frontend_admin(context):
     obj = context.get('object')
     if 'gallery' in context:
         obj = context.get('gallery')
-    placement = context.get('placement')
 
     vars['user'] = user
     vars['STATIC_URL'] = context.get('STATIC_URL')
     vars['NEWMAN_MEDIA_URL'] = context.get('NEWMAN_MEDIA_URL')
-    vars['placement'] = placement
     vars['category'] = context.get('category')
     vars['newman_index_url'] = newman_settings.BASE_URL
+    vars['hitcount'] = None
+
     category = vars['category']
     if not category or not category.pk:
         return vars
@@ -61,11 +61,16 @@ def newman_frontend_admin(context):
     vars['positions'] = positions
 
     if obj:
-        vars['object'] = obj
-        vars['newman_object_url'] = get_newman_url(obj)
-        vars['newman_comment_moderation_url'] = get_moderation_url(obj)
-        if placement:
-            vars['hitcount'] = HitCount.objects.get(placement=placement.pk)
+        try:
+            from ella_hits.models import HitCount
+        except ImportError:
+            pass
+        else:
+            vars['object'] = obj
+            vars['newman_object_url'] = get_newman_url(obj)
+            vars['newman_comment_moderation_url'] = get_moderation_url(obj)
+            if isinstance(obj, Publishable):
+                vars['hitcount'] = HitCount.objects.get(publishable=obj.pk)
 
     return vars
 
