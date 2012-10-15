@@ -36,6 +36,12 @@ class NewmanSite(AdminSite):
     password_change_template = 'newman/password_change_form.html'
     password_change_done_template = 'newman/password_change_done.html'
 
+    @property
+    def MODELS_ALL_PUBLISHABLE(self):
+        for model in self._registry.keys():
+            if issubclass(model, Publishable):
+                yield '%s.%s' % (model._meta.app_label, model.__name__)
+
     def __init__(self, name=None, app_name='ella_newman'):
         super(NewmanSite, self).__init__(name=name, app_name=app_name)
 
