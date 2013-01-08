@@ -14,6 +14,7 @@ TABLES = (
 )
 
 class Migration:
+    no_dry_run = True
     
     def forwards(self, orm):
 
@@ -22,7 +23,7 @@ class Migration:
             db.rename_table(table, 'ella_%s' % table)
 
         # rename app in contenttypes table
-        orm['contenttypes.Contentype'].objects.filter(app_label='newman').update(app_label='ella_newman')
+        orm['contenttypes.ContentType'].objects.filter(app_label='newman').update(app_label='ella_newman')
 
         # db.delete_unique('newman_adminsetting', ['user_id', 'var'])
         # db.delete_unique('newman_devmessage', ['slug', 'ts'])
@@ -37,7 +38,7 @@ class Migration:
         for table in TABLES:
             db.rename_table('ella_%s' % table, table)
         # rename app in contenttypes table
-        orm['contenttypes.Contentype'].objects.filter(app_label='ella_newman').update(app_label='newman')
+        orm['contenttypes.ContentType'].objects.filter(app_label='ella_newman').update(app_label='newman')
     
     
     models = {
@@ -89,9 +90,11 @@ class Migration:
             'id': ('models.AutoField', [], {'primary_key': 'True'})
         },
         'contenttypes.contenttype': {
-            'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label','model'),)", 'db_table': "'django_content_type'"},
-            '_stub': True,
-            'id': ('models.AutoField', [], {'primary_key': 'True'})
+            'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
+            'app_label': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
         'ella_newman.adminhelpitem': {
             'Meta': {'ordering': "('ct','field',)", 'unique_together': "(('ct','field','lang',),)"},
